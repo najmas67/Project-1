@@ -1,17 +1,22 @@
-const facts = [
-  'Badtz-Maru was born on April 1, making him an April Fool with perfect mischievous energy.',
-  'His full name is Badtz-Maru, and he is a little penguin from Sakhalin Island.',
-  'Badtz-Maru often says he wants to be the coolest penguin around.',
-  'He has a best friend named Hana-Maru and a favorite pastime of playing baseball.',
-  'He sometimes uses a small shark character named Mr. G to help show his attitude.'
-];
+const sections = document.querySelectorAll('main section[id]');
+const navLinks = document.querySelectorAll('.tab-link');
 
-const button = document.getElementById('surpriseButton');
-const factText = document.getElementById('factText');
+const setActiveLink = () => {
+  const midpoint = window.scrollY + window.innerHeight / 3;
 
-if (button && factText) {
-  button.addEventListener('click', () => {
-    const random = facts[Math.floor(Math.random() * facts.length)];
-    factText.textContent = random;
+  sections.forEach((section) => {
+    const top = section.offsetTop;
+    const bottom = top + section.offsetHeight;
+    const sectionId = section.getAttribute('id');
+
+    if (midpoint >= top && midpoint < bottom) {
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute('href') === `#${sectionId}`;
+        link.classList.toggle('active', isActive);
+      });
+    }
   });
-}
+};
+
+window.addEventListener('scroll', setActiveLink, { passive: true });
+window.addEventListener('load', setActiveLink);
