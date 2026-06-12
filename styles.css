@@ -162,6 +162,7 @@ body {
 }
 
 .panel {
+  position: relative;
   min-height: 100vh;
   display: grid;
   align-content: center;
@@ -171,6 +172,25 @@ body {
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.14);
   box-shadow: inset 0 0 0 1px var(--frame-inner), 0 16px 36px rgba(58, 35, 105, 0.2);
+}
+
+.panel::before,
+.panel::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 34px;
+}
+
+.panel::before {
+  inset: -12px;
+  border: 3px dotted rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.22);
+}
+
+.panel::after {
+  inset: -5px;
+  border: 3px dashed rgba(195, 164, 247, 0.92);
 }
 
 .home-panel {
@@ -268,6 +288,27 @@ body {
   box-shadow: inset 0 0 0 1px var(--frame-inner), 0 10px 24px rgba(58, 35, 105, 0.18);
 }
 
+.about-panel ul.about-list {
+  position: relative;
+  max-width: 64ch;
+  margin: 0;
+  padding: 1.35rem 1.5rem 1.35rem 3rem;
+  font-size: 1.45rem;
+  line-height: 1.9;
+  color: var(--text-main);
+  background: var(--panel-bg);
+  border: 3px solid rgba(255, 255, 255, 0.86);
+  border-radius: 22px;
+  box-shadow:
+    inset 0 0 0 2px rgba(150, 114, 218, 0.38),
+    0 10px 24px rgba(58, 35, 105, 0.18),
+    0 0 0 4px rgba(255, 255, 255, 0.26);
+}
+
+.about-panel ul.about-list li {
+  margin: 0.2rem 0;
+}
+
 .about-panel p::before,
 .about-panel p::after {
   content: "";
@@ -285,6 +326,25 @@ body {
 .about-panel p::after {
   inset: -5px;
   border: 2px dashed var(--lace-2);
+}
+
+.about-panel ul.about-list::before,
+.about-panel ul.about-list::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 28px;
+}
+
+.about-panel ul.about-list::before {
+  inset: -12px;
+  border: 3px dotted rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.28);
+}
+
+.about-panel ul.about-list::after {
+  inset: -6px;
+  border: 3px dashed rgba(195, 164, 247, 0.95);
 }
 
 .about-panel a {
