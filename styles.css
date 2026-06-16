@@ -48,10 +48,12 @@ body {
   font-family: "Jojoba", "Trebuchet MS", sans-serif;
   color: var(--text-main);
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 8% 12%, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 28%),
-    radial-gradient(circle at 92% 18%, rgba(255, 218, 242, 0.45) 0%, rgba(255, 255, 255, 0) 32%),
-    linear-gradient(120deg, var(--lavender-1) 0%, var(--lavender-2) 38%, var(--lavender-3) 72%, var(--dream-pink) 100%);
+  background-color: var(--lavender-4);
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 18%, rgba(255, 255, 255, 0) 20%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.75) 16%, rgba(255, 255, 255, 0) 18%);
+  background-size: 42px 42px, 42px 42px;
+  background-position: 0 0, 21px 21px;
 }
 
 .side-tab,
@@ -300,8 +302,29 @@ body[data-theme="dark"] .theme-toggle {
   transition: transform 0.35s ease, text-shadow 0.35s ease, filter 0.35s ease;
 }
 
+.intro,
+.subtext,
+.panel h2 {
+  transition: transform 0.35s ease, text-shadow 0.35s ease, filter 0.35s ease;
+}
+
 .bubble-name:hover,
 .bubble-name:focus-visible {
+  transform: translateY(-5px) rotate(-1deg) scale(1.03);
+  filter: brightness(1.08) saturate(1.2);
+  text-shadow:
+    0 2px 0 rgba(101, 61, 173, 0.95),
+    0 9px 0 rgba(101, 61, 173, 0.7),
+    0 18px 28px rgba(80, 50, 140, 0.5),
+    0 0 30px rgba(255, 255, 255, 0.55);
+}
+
+.intro:hover,
+.intro:focus-visible,
+.subtext:hover,
+.subtext:focus-visible,
+.panel h2:hover,
+.panel h2:focus-visible {
   transform: translateY(-5px) rotate(-1deg) scale(1.03);
   filter: brightness(1.08) saturate(1.2);
   text-shadow:
@@ -379,7 +402,7 @@ body[data-theme="dark"] .theme-toggle {
   padding-bottom: 6rem;
 }
 
-.about-panel h2 {
+.panel h2 {
   margin: 0 0 1rem;
   font-family: "Quicksand", "Trebuchet MS", sans-serif;
   font-size: clamp(2.3rem, 4.8vw, 3.5rem);
@@ -595,6 +618,7 @@ body[data-theme="dark"] .theme-toggle {
   .photo-lace {
     inset: -12px;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
