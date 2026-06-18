@@ -8,6 +8,8 @@
   --lavender-3: #bb9af5;
   --lavender-4: #8d6bcf;
   --dream-pink: #f6e6ff;
+  --page-bg: linear-gradient(160deg, #e7dbfb 0%, #d8c8f0 45%, #cab5ea 100%);
+  --panel-solid: #e8dff9;
   --panel-bg: rgba(255, 255, 255, 0.28);
   --frame-border: rgba(255, 255, 255, 0.62);
   --frame-inner: rgba(128, 94, 194, 0.25);
@@ -24,6 +26,8 @@ body[data-theme="dark"] {
   --lavender-3: #312552;
   --lavender-4: #4a3a79;
   --dream-pink: #20172f;
+  --page-bg: linear-gradient(165deg, #131022 0%, #1a1430 46%, #241a42 100%);
+  --panel-solid: #21183a;
   --panel-bg: rgba(30, 24, 48, 0.76);
   --frame-border: rgba(192, 168, 255, 0.52);
   --frame-inner: rgba(170, 130, 255, 0.25);
@@ -48,12 +52,7 @@ body {
   font-family: "Jojoba", "Trebuchet MS", sans-serif;
   color: var(--text-main);
   overflow-x: hidden;
-  background-color: var(--lavender-4);
-  background-image:
-    radial-gradient(circle, rgba(255, 255, 255, 0.9) 18%, rgba(255, 255, 255, 0) 20%),
-    radial-gradient(circle, rgba(255, 255, 255, 0.75) 16%, rgba(255, 255, 255, 0) 18%);
-  background-size: 42px 42px, 42px 42px;
-  background-position: 0 0, 21px 21px;
+  background: var(--page-bg);
 }
 
 .side-tab,
@@ -237,7 +236,7 @@ body[data-theme="dark"] .theme-toggle {
   margin: 1rem 0;
   border: 2px solid var(--frame-border);
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--panel-solid);
   box-shadow: inset 0 0 0 1px var(--frame-inner), 0 16px 36px rgba(58, 35, 105, 0.2);
 }
 
@@ -398,18 +397,111 @@ body[data-theme="dark"] .theme-toggle {
   border-radius: 20px;
 }
 
+.home-panel .home-photo {
+  background: linear-gradient(160deg, #efe5ff 0%, #dfccff 52%, #c9b0f4 100%);
+}
+
+.home-panel .photo-lace {
+  background: none;
+}
+
+.home-panel .home-photo img {
+  mix-blend-mode: multiply;
+  opacity: 0.98;
+}
+
+.interests-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(180px, 0.8fr);
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2.8rem);
+}
+
+.interests-copy {
+  min-width: 0;
+}
+
+.interests-photo {
+  justify-self: end;
+  width: min(100%, 300px);
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  transform: none;
+}
+
+.interests-photo .photo-lace {
+  inset: -16px;
+  border-radius: 999px;
+}
+
+.interests-photo::before,
+.interests-photo::after {
+  border-radius: 999px;
+}
+
+.interests-photo img {
+  border-radius: 999px;
+  object-position: center 30%;
+}
+
 .about-panel {
   padding-bottom: 6rem;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+  align-items: center;
+  gap: clamp(1.2rem, 3.2vw, 2.8rem);
+}
+
+.about-photo {
+  justify-self: end;
+  width: min(100%, 400px);
+  aspect-ratio: 5 / 4;
+  transform: none;
+}
+
+.about-photo img {
+  object-position: center 20%;
+}
+
+.about-photo .photo-lace {
+  background: none;
+}
+
+.goals-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+  align-items: center;
+  gap: clamp(1.2rem, 3.2vw, 2.8rem);
+}
+
+.goals-photo {
+  justify-self: end;
+  width: min(100%, 400px);
+  aspect-ratio: 5 / 4;
+  transform: none;
+}
+
+.goals-photo .photo-lace {
+  background: none;
+}
+
+.goals-photo img {
+  object-position: center;
+  mix-blend-mode: normal;
+  opacity: 1;
 }
 
 .panel h2 {
   margin: 0 0 1rem;
   font-family: "Quicksand", "Trebuchet MS", sans-serif;
   font-size: clamp(2.3rem, 4.8vw, 3.5rem);
-  color: var(--white);
+  color: var(--text-soft);
   text-decoration-line: underline;
   text-decoration-style: dotted;
-  text-decoration-color: var(--white);
+  text-decoration-color: var(--text-soft);
   text-decoration-thickness: 0.07em;
   text-underline-offset: 0.22em;
 }
@@ -617,6 +709,36 @@ body[data-theme="dark"] .theme-toggle {
 
   .photo-lace {
     inset: -12px;
+  }
+
+  .interests-layout {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .about-photo {
+    justify-self: center;
+    width: min(100%, 285px);
+  }
+
+  .goals-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .goals-photo {
+    justify-self: center;
+    width: min(100%, 285px);
+  }
+
+  .interests-photo {
+    justify-self: center;
+    width: min(100%, 230px);
   }
 
 }
