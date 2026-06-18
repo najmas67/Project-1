@@ -410,6 +410,74 @@ body[data-theme="dark"] .theme-toggle {
   opacity: 0.98;
 }
 
+.record-player-dock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.65rem;
+  margin: 1.2rem 0 0.6rem;
+  padding-right: 0.55rem;
+}
+
+.record-player {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1rem 0.55rem 0.55rem;
+  color: var(--white);
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  border: 2px solid var(--frame-border);
+  border-radius: 999px;
+  background: rgba(97, 66, 162, 0.72);
+  box-shadow: inset 0 0 0 1px var(--frame-inner), 0 8px 20px rgba(65, 40, 120, 0.25);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.record-player:hover,
+.record-player:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(93, 64, 156, 0.9);
+}
+
+.record-player-disc {
+  position: relative;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #f8f0ff 0 11%, #bf9ef2 12% 18%, #2d2148 19% 46%, #120f1f 47% 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.2),
+    0 4px 12px rgba(34, 20, 64, 0.4);
+}
+
+.record-player-disc::after {
+  content: "";
+  position: absolute;
+  inset: 46% auto auto 46%;
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.record-player.playing .record-player-disc {
+  animation: spinRecord 1.25s linear infinite;
+}
+
+.record-player-status {
+  margin: 0;
+  max-width: 25rem;
+  text-align: right;
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
 .interests-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(180px, 0.8fr);
@@ -632,6 +700,15 @@ body[data-theme="dark"] .theme-toggle {
   }
 }
 
+@keyframes spinRecord {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 760px) {
   .side-tab {
     top: auto;
@@ -741,10 +818,24 @@ body[data-theme="dark"] .theme-toggle {
     width: min(100%, 230px);
   }
 
+  .record-player-dock {
+    align-items: center;
+    margin-bottom: 5.8rem;
+    padding-right: 0;
+  }
+
+  .record-player-status {
+    text-align: center;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
   .bubble-name {
+    animation: none;
+  }
+
+  .record-player.playing .record-player-disc {
     animation: none;
   }
 

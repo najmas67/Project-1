@@ -1,5 +1,8 @@
 const navLinks = document.querySelectorAll('.tab-link');
 const themeToggle = document.getElementById('theme-toggle');
+const recordPlayerButton = document.getElementById('record-player-button');
+const swanLakeAudio = document.getElementById('swan-lake-audio');
+const recordPlayerStatus = document.getElementById('record-player-status');
 const THEME_STORAGE_KEY = 'theme-preference';
 const PAGE_TRANSITION_MS = 260;
 
@@ -82,9 +85,60 @@ const setupPageTransitions = () => {
   });
 };
 
+const setupRecordPlayer = () => {
+  if (!recordPlayerButton || !swanLakeAudio) {
+    return;
+  }
+
+  const setPlayerState = (isPlaying, message, buttonLabel) => {
+    recordPlayerButton.classList.toggle('playing', isPlaying);
+    recordPlayerButton.setAttribute('aria-pressed', String(isPlaying));
+
+    if (recordPlayerStatus && message) {
+      recordPlayerStatus.textContent = message;
+    }
+
+    if (buttonLabel) {
+      recordPlayerButton.setAttribute('aria-label', buttonLabel);
+    }
+  };
+
+  swanLakeAudio.addEventListener('play', () => {
+    setPlayerState(true, 'Now playing: Swan Lake by Tchaikovsky.', 'Pause Swan Lake by Tchaikovsky');
+  });
+
+  swanLakeAudio.addEventListener('pause', () => {
+    if (swanLakeAudio.currentTime < swanLakeAudio.duration) {
+      setPlayerState(false, 'Paused. Tap the record to continue.', 'Play Swan Lake by Tchaikovsky');
+    }
+  });
+
+  swanLakeAudio.addEventListener('ended', () => {
+    setPlayerState(false, 'Swan Lake finished. Tap to play again.', 'Play Swan Lake by Tchaikovsky');
+    swanLakeAudio.currentTime = 0;
+  });
+
+  swanLakeAudio.addEventListener('error', () => {
+    setPlayerState(false, 'Could not load the track right now.', 'Play Swan Lake by Tchaikovsky');
+  });
+
+  recordPlayerButton.addEventListener('click', async () => {
+    try {
+      if (swanLakeAudio.paused) {
+        await swanLakeAudio.play();
+      } else {
+        swanLakeAudio.pause();
+      }
+    } catch (_error) {
+      setPlayerState(false, 'Playback was blocked. Tap again to start music.', 'Play Swan Lake by Tchaikovsky');
+    }
+  });
+};
+
 window.addEventListener('load', () => {
   applyTheme(getInitialTheme());
   setActivePageLink();
+  setupRecordPlayer();
 });
 
 setupPageTransitions();

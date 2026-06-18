@@ -39,6 +39,17 @@
 				</figure>
 			</div>
 		</section>
+
+		<div class="record-player-dock" aria-label="Music player">
+			<button id="record-player-button" class="record-player" type="button" aria-pressed="false" aria-label="Play Swan Lake by Tchaikovsky">
+				<span class="record-player-disc" aria-hidden="true"></span>
+				<span class="record-player-text">Play Swan Lake</span>
+			</button>
+			<p id="record-player-status" class="record-player-status" aria-live="polite">Tap the record to play Swan Lake.</p>
+			<audio id="swan-lake-audio" preload="metadata">
+				<source src="https://commons.wikimedia.org/wiki/Special:FilePath/Tchaikovsky_Swan_Lake_Op.20_No.10._Sc%C3%A8ne.ogg" type="audio/ogg">
+			</audio>
+		</div>
 	</main>
 
 	<script src="script.js?v=20260612-2"></script>
