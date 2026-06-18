@@ -1,8 +1,5 @@
 const navLinks = document.querySelectorAll('.tab-link');
 const themeToggle = document.getElementById('theme-toggle');
-const recordPlayerButton = document.getElementById('record-player-button');
-const swanLakeAudio = document.getElementById('swan-lake-audio');
-const recordPlayerStatus = document.getElementById('record-player-status');
 const THEME_STORAGE_KEY = 'theme-preference';
 const PAGE_TRANSITION_MS = 260;
 
@@ -85,10 +82,56 @@ const setupPageTransitions = () => {
   });
 };
 
-const setupRecordPlayer = () => {
+const ensureRecordPlayer = () => {
+  let recordPlayerButton = document.getElementById('record-player-button');
+  let swanLakeAudio = document.getElementById('swan-lake-audio');
+  let recordPlayerStatus = document.getElementById('record-player-status');
+
+  if (recordPlayerButton && swanLakeAudio) {
+    return { recordPlayerButton, swanLakeAudio, recordPlayerStatus };
+  }
+
+  const pageContent = document.querySelector('.page-content');
+
+  if (!pageContent) {
+    return null;
+  }
+
+  const dock = document.createElement('div');
+  dock.className = 'record-player-dock';
+  dock.setAttribute('aria-label', 'Music player');
+  dock.innerHTML = `
+    <button id="record-player-button" class="record-player" type="button" aria-pressed="false" aria-label="Play Swan Lake by Tchaikovsky">
+      <span class="record-player-disc" aria-hidden="true"></span>
+      <span class="record-player-text">Play Swan Lake</span>
+    </button>
+    <p id="record-player-status" class="record-player-status" aria-live="polite">Tap the record to play Swan Lake.</p>
+    <audio id="swan-lake-audio" preload="metadata">
+      <source src="https://commons.wikimedia.org/wiki/Special:FilePath/Tchaikovsky_Swan_Lake_Op.20_No.10._Sc%C3%A8ne.ogg" type="audio/ogg">
+    </audio>
+  `;
+
+  pageContent.appendChild(dock);
+
+  recordPlayerButton = document.getElementById('record-player-button');
+  swanLakeAudio = document.getElementById('swan-lake-audio');
+  recordPlayerStatus = document.getElementById('record-player-status');
+
   if (!recordPlayerButton || !swanLakeAudio) {
+    return null;
+  }
+
+  return { recordPlayerButton, swanLakeAudio, recordPlayerStatus };
+};
+
+const setupRecordPlayer = () => {
+  const playerElements = ensureRecordPlayer();
+
+  if (!playerElements) {
     return;
   }
+
+  const { recordPlayerButton, swanLakeAudio, recordPlayerStatus } = playerElements;
 
   const setPlayerState = (isPlaying, message, buttonLabel) => {
     recordPlayerButton.classList.toggle('playing', isPlaying);
@@ -108,7 +151,7 @@ const setupRecordPlayer = () => {
   });
 
   swanLakeAudio.addEventListener('pause', () => {
-    if (swanLakeAudio.currentTime < swanLakeAudio.duration) {
+    if (!swanLakeAudio.ended) {
       setPlayerState(false, 'Paused. Tap the record to continue.', 'Play Swan Lake by Tchaikovsky');
     }
   });
