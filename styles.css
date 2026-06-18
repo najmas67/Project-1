@@ -253,6 +253,23 @@ body[data-theme="dark"] .theme-toggle {
   z-index: 2;
 }
 
+.site-footer {
+  position: relative;
+  z-index: 2;
+  width: min(1000px, calc(100% - 2rem));
+  margin: 0 auto 2rem;
+  text-align: center;
+  color: var(--white);
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(58, 35, 105, 0.35);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
 .panel {
   position: relative;
   min-height: 100vh;
@@ -390,7 +407,7 @@ body[data-theme="dark"] .theme-toggle {
   position: absolute;
   inset: -18px;
   pointer-events: none;
-  border-radius: 35px;
+  border-radius: inherit;
   border: 2px dotted rgba(255, 255, 255, 0.95);
   box-shadow:
     0 0 0 2px rgba(255, 255, 255, 0.35),
@@ -407,7 +424,7 @@ body[data-theme="dark"] .theme-toggle {
   content: "";
   position: absolute;
   pointer-events: none;
-  border-radius: 30px;
+  border-radius: inherit;
 }
 
 .home-photo::before {
@@ -426,7 +443,7 @@ body[data-theme="dark"] .theme-toggle {
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 20px;
+  border-radius: inherit;
 }
 
 .image-caption {
@@ -437,7 +454,7 @@ body[data-theme="dark"] .theme-toggle {
   justify-content: center;
   padding: 1.5rem 1rem;
   margin: 0;
-  border-radius: 20px;
+  border-radius: inherit;
   background: rgba(101, 61, 173, 0.92);
   color: var(--white);
   font-family: "Quicksand", "Trebuchet MS", sans-serif;
@@ -553,18 +570,22 @@ body[data-theme="dark"] .theme-toggle {
   transform: none;
 }
 
+.interests-photo:hover {
+  transform: scale(1.02);
+}
+
 .interests-photo .photo-lace {
   inset: -16px;
-  border-radius: 999px;
+  border-radius: inherit;
 }
 
 .interests-photo::before,
 .interests-photo::after {
-  border-radius: 999px;
+  border-radius: inherit;
 }
 
 .interests-photo img {
-  border-radius: 999px;
+  border-radius: inherit;
   object-position: center 30%;
 }
 
@@ -633,19 +654,23 @@ body[data-theme="dark"] .theme-toggle {
   transform: none;
 }
 
+.proud-photo:hover {
+  transform: scale(1.02);
+}
+
 .proud-photo .photo-lace {
   inset: -16px;
-  border-radius: 999px;
+  border-radius: inherit;
   background: none;
 }
 
 .proud-photo::before,
 .proud-photo::after {
-  border-radius: 999px;
+  border-radius: inherit;
 }
 
 .proud-photo img {
-  border-radius: 999px;
+  border-radius: inherit;
   object-position: center;
   mix-blend-mode: normal;
   opacity: 1;
@@ -666,22 +691,33 @@ body[data-theme="dark"] .theme-toggle {
   transform: none;
 }
 
+.favorites-photo:hover {
+  transform: scale(1.02);
+}
+
 .favorites-photo .photo-lace {
   inset: -16px;
-  border-radius: 999px;
+  border-radius: inherit;
   background: none;
 }
 
 .favorites-photo::before,
 .favorites-photo::after {
-  border-radius: 999px;
+  border-radius: inherit;
 }
 
 .favorites-photo img {
-  border-radius: 999px;
+  border-radius: inherit;
   object-position: center;
   mix-blend-mode: normal;
   opacity: 1;
+}
+
+.interests-photo .image-caption,
+.proud-photo .image-caption,
+.favorites-photo .image-caption {
+  border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
 }
 
 .panel h2 {
@@ -893,6 +929,12 @@ body[data-theme="dark"] .theme-toggle {
     width: min(1000px, calc(100% - 1.25rem));
     margin: 0 auto;
     padding: 2rem 0 4rem;
+  }
+
+  .site-footer {
+    width: min(1000px, calc(100% - 1.25rem));
+    margin: 0 auto 6rem;
+    font-size: 0.9rem;
   }
 
   .home-layout {
