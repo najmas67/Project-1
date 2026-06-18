@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<title>Favorite Things | Najma Salem</title>
-	<link rel="stylesheet" href="styles.css?v=20260618-2">
+	<link rel="stylesheet" href="styles.css?v=20260618-5">
 </head>
 <body>
 	<aside class="side-tab" aria-label="Section navigation">
@@ -15,7 +15,6 @@
 		<a href="proud.html" class="tab-link" data-page="proud.html">Something I'm proud of ! 🌟</a>
 		<a href="goals.html" class="tab-link" data-page="goals.html">Goals/Dreams ! 💭</a>
 		<a href="find-me.html" class="tab-link" data-page="find-me.html">Find Me ! 📱</a>
-		<button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Dark mode 🌙</button>
 	</aside>
 
 	<div class="dream-cloud dream-cloud-one" aria-hidden="true">☁️</div>
@@ -26,17 +25,27 @@
 	<main class="page-content">
 		<section class="panel about-panel">
 			<h2>⤷ ゛Favorite Things ˎˊ˗ ! 💜</h2>
-			<ul class="about-list">
-				<li>My favorite color is purple. 💜</li>
-				<li>My favorite foods are shawarmas, burgers, pizza, and rice. 🍕</li>
-				<li>My favorite drinks are water, Fanta, and Sprite. 💧</li>
-				<li>My favorite classes are Orchestra and History. 🎻</li>
-				<li>My favorite season is winter. ❄️</li>
-				<li>My favorite animal is a bunny. 🐰</li>
-			</ul>
+			<div class="favorites-layout">
+				<ul class="about-list">
+					<li>My favorite color is purple. 💜</li>
+					<li>My favorite foods are shawarmas, burgers, pizza, and rice. 🍕</li>
+					<li>My favorite drinks are water, Fanta, and Sprite. 💧</li>
+					<li>My favorite classes are Orchestra and History. 🎻</li>
+					<li>My favorite season is winter. ❄️</li>
+					<li>My favorite animal is a bunny. 🐰</li>
+				</ul>
+
+				<figure class="home-photo favorites-photo">
+					<span class="photo-lace" aria-hidden="true"></span>
+					<img src="pictures/IMG_0588.jpeg" alt="Shawarma wraps with melted cheese" loading="lazy">
+					<figcaption class="image-caption">My favorite food: shawarma!</figcaption>
+				</figure>
+			</div>
 		</section>
 	</main>
 
-	<script src="script.js?v=20260618-2"></script>
+	<button id="theme-toggle" class="theme-toggle floating-theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode">🌙</button>
+
+	<script src="script.js?v=20260618-3"></script>
 </body>
 </html>
